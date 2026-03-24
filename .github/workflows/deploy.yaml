@@ -22,3 +22,6 @@ jobs:
           echo "${{ secrets.ENVIRONMENT }}" > .env
           export $(cat .env | xargs)
           mvn clean install
+
+      - name: Run all tests
+        run: mvn test

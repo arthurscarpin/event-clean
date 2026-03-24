@@ -28,3 +28,15 @@ jobs:
           echo "${{ secrets.ENVIRONMENT }}" > .env
           export $(cat .env | xargs)
           mvn test
+
+      - name: Build Artifact
+        run: |
+          echo "${{ secrets.ENVIRONMENT }}" > .env
+          export $(cat .env | xargs)
+          mvn clean package
+
+      - name: Store Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: myapp-jar
+          path: target/*.jar

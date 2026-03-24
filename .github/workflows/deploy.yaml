@@ -24,4 +24,7 @@ jobs:
           mvn clean install
 
       - name: Run all tests
-        run: mvn test
+        run: |
+          echo "${{ secrets.ENVIRONMENT }}" > .env
+          export $(cat .env | xargs)
+          mvn test
